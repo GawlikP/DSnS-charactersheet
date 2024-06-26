@@ -7,7 +7,7 @@
     v-for="(checked, index) in props.checkboxes[attributeName]"
     :key="index"
     :id="`${props.attributeName}-stat-${index}`"
-    :class="`${checked === true ? 'text-red-600' : 'text-white' } hover:text-red-500 hover:cursor-pointer`"
+    :class="`${checked === true ? 'text-red-600' : 'text-stone-500' } hover:text-red-500 hover:cursor-pointer`"
     @click="$emit('setAttribute', checked, index, props.attributeName)"
   ><i class="fa-solid fa-skull"></i></span>
 </div>
