@@ -1,87 +1,101 @@
 <template>
-  <div class="flex flex-col text-red-600 px-4 py-4 w-full">
+  <div class="flex flex-col text-red-600  py-4 w-full w-max-full px-8 xl:w-3/4">
     <h1 class="text-italic font-bold text-center text-2xl"> Don't Stress And Survive </h1>
     <div class="flex flex-col text-md w-full">
-      <div class="flex">
+      <div class="flex w-full">
         <button class="text-center border-2 border-red-600 bg-transparent border-2 p-2 rounded-xl hover:shadow-md hover:shadow-rose-500" @click="downloadData">Export</button>
         <button class="text-center border-2 border-red-600 bg-transparent border-2 p-2 rounded-xl hover:shadow-md hover:shadow-rose-500" @click="importData">Import</button>
       </div>
     </div>
-    <div class="flex flex-row text-2xl border-b-2 border-red-600 rounded-xl p-8 w-full">
+    <div class="flex text-2xl border-b-2 border-red-600 rounded-xl w-full px-6 py-4">
       <label for="name">Name:</label>
       <input id="name" v-model="name" />
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-2xl w-full text-center">Statistics</p>
     </div>
-    <div class="flex flex-row py-4 w-full">
-      <div class="flex flex-col px-2 w-full" id="statistics-column-a">
-        <label for="max-hp" class="text-xl"><i class="fa-solid fa-heart text-2xl"></i> Max Health:</label>
-        <input id="max-hp" v-model="statMaxHp"  disabled/>
-        <label for="current-hp" class="text-xl">Current Health:</label>
-        <input id="current-hp" v-model="currentHp" />
-        <label for="max-mp" class="text-xl"><i class="fa-solid fa-wand-sparkles text-2xl"></i> Max Magic:</label>
-        <input id="max-mp" v-model="statMaxMp" />
-        <label for="current-mp">Current Magic:</label>
-        <input id="current-mp" v-model="currentMp"/>
+    <div class="flex flex-col py-4 w-full w-max-full">
+      <div class="flex flex-col w-full" id="statistics-column-a">
+        <div class="flex flex-col w-max-full">
+          <label for="max-hp" class="text-xl"><i class="fa-solid fa-heart text-2xl mx-4"></i> Max Health:</label>
+          <input id="max-hp" v-model="statMaxHp" class="px-4"  disabled/>
+        </div>
+        <div class="flex flex-col w-max-full">
+          <label for="current-hp" class="text-xl">Current Health:</label>
+          <input id="current-hp" v-model="currentHp"/>
+        </div>
+        <div class="flex flex-col w-max-full">
+          <label for="max-mp" class="text-xl"><i class="fa-solid fa-wand-sparkles text-2xl mx-4"></i> Max Magic:</label>
+          <input id="max-mp" v-model="statMaxMp" />
+        </div>
+        <div class="flex flex-col w-max-full">
+          <label for="current-mp">Current Magic:</label>
+          <input id="current-mp" v-model="currentMp"/>
+        </div>
       </div>
-      <div class="flex flex-col px-2 w-full" id="statistics-column-b">
-        <label for="fear" class="text-xl"> <i class="fa-solid fa-ghost text-2xl"></i> Current Fear:</label>
+      <div class="flex flex-col w-full px-4 my-4" id="statistics-column-b">
+        <label for="fear" class="text-xl"> <i class="fa-solid fa-ghost text-2xl mx-4"></i> Current Fear:</label>
         <input type="number" id="fear" v-model="fear"/>
-        <label for="fortune" class="text-xl"> <i class="fa-solid fa-clover text-2xl"></i>Current Fortune:</label>
-        <input id="fortune" v-model="fortune" />
+        <label for="fortune" class="text-xl"> <i class="fa-solid fa-clover text-2xl mx-4"></i>Current Fortune:</label>
+        <input id="fortune" v-model="fortune"/>
       </div>
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-2xl w-full text-center">Throw Helper</p>
     </div>
-    <div class="flex flex-row py-4 px-8 w-full rounded-xl border-b-2 border-red-600">
+    <div class="flex py-4  w-full rounded-xl border-b-2 border-red-600">
       <span v-if="isSkillSelected" class="text-2xl">
         Current Dice Pull: {{ currentDicePull }} (Remember to check talents!)
       </span>
     </div>
-    <div class="flex flex-row py-4 w-full">
-      <div class="flex flex-col px-2 w-full" id="attributes-column">
-        <p class="text-2xl w-full text-center">Attributes</p>
-        <StatsCheckbox
-          v-for="(value, key) in attributes"
-          :key="key"
-          :attributeName="key"
-          :checkboxes="attributesCheckboxes"
-          :marked="markedAttributes[key]"
-          @setAttribute="setAttribute"
-          @setMarked="setMarkedAttribute"
-          class="px-2 py-2 my-2"
-          />
-      </div>
-      <div class="flex flex-col px-2 w-full">
-        <p class="text-2xl w-full text-center">Skills</p>
-        <StatsCheckbox
-          v-for="(value, key) in coulmnASkills"
-          :key="key"
-          :attributeName="key"
-          :checkboxes="skillsCheckboxes"
-          :marked="markedSkills[key]"
-          @setAttribute="setSkill"
-          @setMarked="setMartedSkill"
-          class="px-2 py-2 my-2"
-          />
-      </div>
-      <div class="flex flex-col px-2 w-full">
-        <p class="text-2xl w-full text-center"></p>
-        <StatsCheckbox
-          v-for="(value, key) in coulmnBSkills"
-          :key="key"
-          :attributeName="key"
-          :checkboxes="skillsCheckboxes"
-          :marked="markedSkills[key]"
-          @setAttribute="setSkill"
-          @setMarked="setMartedSkill"
-          class="px-2 py-2 my-2"
-          />
+    <div class="flex py-4 w-full">
+      <div class="flex flex-col w-full ">
+        <div class="flex flex-col w-full" id="attributes-column">
+          <div class="w-full">
+            <p class="text-2xl text-center">Attributes</p>
+          </div>
+          <div class="flex flex-col w-full">
+            <StatsCheckbox
+              v-for="(value, key) in attributes"
+              :key="key"
+              :attributeName="key"
+              :checkboxes="attributesCheckboxes"
+              :marked="markedAttributes[key]"
+              @setAttribute="setAttribute"
+              @setMarked="setMarkedAttribute"
+              class="my-2 w-full"
+              />
+          </div>
+        </div>
+        <div class="flex flex-col w-full ">
+          <p class="text-2xl w-full text-center">Skills</p>
+          <StatsCheckbox
+            v-for="(value, key) in coulmnASkills"
+            :key="key"
+            :attributeName="key"
+            :checkboxes="skillsCheckboxes"
+            :marked="markedSkills[key]"
+            @setAttribute="setSkill"
+            @setMarked="setMartedSkill"
+            class="my-2 w-full"
+            />
+        </div>
+        <div class="flex flex-col w-full ">
+          <p class="text-2xl w-full text-center"></p>
+          <StatsCheckbox
+            v-for="(value, key) in coulmnBSkills"
+            :key="key"
+            :attributeName="key"
+            :checkboxes="skillsCheckboxes"
+            :marked="markedSkills[key]"
+            @setAttribute="setSkill"
+            @setMarked="setMartedSkill"
+            class="my-2 w-full"
+            />
+        </div>
       </div>
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex my-4 w-full">
       <p class="text-2xl w-full text-center">Wounds</p>
     </div>
     <div class="w-full rounded-xl border-b-2 border-red-600">
@@ -91,103 +105,117 @@
         :attributeName="key"
         :checkboxes="woundsCheckboxes"
         @setAttribute="setWound"
-        class="flex flex-row px-2 py-2 my-2"
+        class="flex my-2"
         />
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-2xl w-full text-center">Equipment</p>
     </div>
-    <div class="flex flex-row py-4 w-full">
-      <div class="flex flex-col w-1/2">
+    <div class="flex flex-row my-4 w-full">
+      <div class="flex flex-col w-full">
         <label for="equipment-hands" class="text-xl">Hands</label>
-        <input id="equipment-hands" v-model="equipment.Hands" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-hands" v-model="equipment.Hands"/>
 
         <label for="equipment-pants-pockets" class="text-xl">Pants Pockets</label>
-        <input id="equipment-pants-pockets" v-model="equipment.PantsPockets" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-pants-pockets" v-model="equipment.PantsPockets"/>
 
         <label for="equipment-jacket-pockets" class="text-xl">Jacket Pockets</label>
-        <input id="equipment-jacket-pockets" v-model="equipment.JacketPockets" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-jacket-pockets" v-model="equipment.JacketPockets"/>
 
         <label for="equipment-small-holster-one" class="text-xl">Small Holster One</label>
-        <input id="equipment-small-holster-one" v-model="equipment.SmallHolsterOne" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-small-holster-one" v-model="equipment.SmallHolsterOne"/>
       </div>
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full">
         <label for="equipment-small-holster-two" class="text-xl">Small Holster Two</label>
-        <input id="equipment-small-holster-two" v-model="equipment.SmallHolsterTwo" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-small-holster-two" v-model="equipment.SmallHolsterTwo"/>
 
         <label for="equipment-large-holster" class="text-xl">Large Holster</label>
-        <input id="equipment-large-holster" v-model="equipment.LargeHolster" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-large-holster" v-model="equipment.LargeHolster"/>
 
         <label for="equipment-scabbard" class="text-xl">Scabbard</label>
-        <input id="equipment-scabbard" v-model="equipment.Scabbard" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-scabbard" v-model="equipment.Scabbard"/>
 
         <label for="equipment-little-things" class="text-xl">Little Things</label>
-        <input id="equipment-little-things" v-model="equipment.LittleThings" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="equipment-little-things" v-model="equipment.LittleThings"/>
       </div>
     </div>
-    <div class="flex flex-row py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+    <div class="flex py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-2xl w-full text-center">Talents</p>
     </div>
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <button class="text-center border-2 border-red-600 bg-transparent p-2 rounded-xl" @click="addTalentSlot">AddTallent</button>
     </div>
     <div
-      class="flex flex-row py-4 w-full"
+      class="flex py-4 w-full"
       v-for="(talent, i) in talentSlots" :key="i">
       <TalentBox v-model="talentSlots[i]" @delete="deleteTalentSlot(i)" :index="i"/>
     </div>
-    <div class="flex flex-row py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+    <div class="flex py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-2xl w-full text-center">Inventory</p>
     </div>
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
         <label for="backpack-capacity" class="text-xl">Backpack/Bag capacity:</label>
-        <input id="backpack-capacity" v-model="backpack.capacity" class="text-2xl bg-transparent rounded-xl px-4 focus:border-red-700"/>
+        <input id="backpack-capacity" v-model="backpack.capacity" class="text-2xl bg-transparent rounded-xl focus:border-red-700"/>
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex py-4 w-full">
       <p class="text-md w-full text-center">Capacity: {{ backpack.capacity }} / {{ usedBackpackSlots }}</p>
     </div>
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex  py-4 w-full">
       <button class="text-center border-2 border-red-600 bg-transparent p-2 rounded-xl" @click="addBackpackSlot">Add Item</button>
     </div>
     <div
-      class="flex flex-row py-4 w-full"
+      class="flex  py-4 w-full"
       v-for="(slot, i) in backpack.slots" :key="i">
       <BackpackSlotBox v-model="backpack.slots[i]" @delete="deleteBackpackSlot(i)"/>
     </div>
-    <div class="flex flex-row py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+    <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex  py-4 w-full">
       <p class="text-2xl w-full text-center">Weapons</p>
     </div>
 
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex  py-4 w-full">
       <button class="text-center border-2 border-red-600 bg-transparent p-2 rounded-xl" @click="addWeapon">Add Weapon</button>
     </div>
 
-    <div class="flex flex-row py-4 w-full"
+    <div class="flex  py-4 w-full"
       v-for="(slot, i) in weapons" :key="i">
       <WeaponSlotBox v-model="weapons[i]" @delete="deleteWeapon(i)" :index="i"/>
     </div>
-    <div class="flex flex-row py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+    <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
-
-    <div class="flex flex-row py-4 w-full">
+    <div class="flex  py-4 w-full">
       <p class="text-2xl w-full text-center">Clothes</p>
     </div>
 
-    <div class="flex flex-row py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+    <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
-    <div class="flex flex-row py-4 w-full"
+    <div class="flex  py-4 w-full"
       v-for="(slot, i) in clothing" :key="i">
       <ClothSlotBox v-model="clothing[i]" :name="i"/>
     </div>
+
+    <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+
+    <div class="flex  py-4 w-full">
+      <p class="text-2xl w-full text-center">Notes</p>
+    </div>
+    <div class="flex flex-col font-bold text-xl w-full">
+      <label :for="`talent-description-${index}`">Notes:</label>
+      <textarea
+        :id="`textarea-notes`"
+        v-model="notes" />
+    </div>
+
+    <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
+
   </div>
 </template>
 <script setup>
@@ -284,6 +312,8 @@ const markedAttributes = ref(arrToObj(Attributes, false));
 const markedSkills = ref(arrToObj(Skills, false));
 
 const name = ref('Character Name');
+
+const notes = ref('');
 
 const fear = ref(0);
 const fortune = ref(0);
@@ -482,13 +512,13 @@ function getFearDice() {
     case 0:
       return "0";
     case 1:
-      return "1d12";
+      return "1d10";
     case 2:
-      return "1d12";
+      return "1d10";
     case 3:
       return "1d10";
     case 4:
-      return "1d8";
+      return "2d8";
     case 5:
       return "2d8";
     case 6:
@@ -521,7 +551,8 @@ function downloadData() {
     backpack: backpack.value,
     talentSlots: talentSlots.value,
     weapons: weapons.value,
-    clothing: clothing.value
+    clothing: clothing.value,
+    notes: notes.value
   };
   const json = JSON.stringify(data);
   const blob = new Blob([json], { type: 'application/json' });
@@ -557,6 +588,7 @@ function importData() {
       talentSlots.value = data.talentSlots;
       weapons.value = data.weapons;
       clothing.value = data.clothing;
+      notes.value = data.notes;
     };
     reader.readAsText(file);
   };
@@ -587,9 +619,9 @@ function addWeapon() {
 </script>
 <style>
 input {
- @apply text-lg bg-transparent rounded-xl px-4 focus:border-red-700 focus:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-red-700;
+ @apply text-lg bg-transparent rounded-xl  focus:border-red-700 focus:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-red-700;
 }
 textarea {
- @apply text-lg bg-transparent rounded-xl px-4 focus:border-red-700 focus:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-red-700;
+ @apply text-lg bg-transparent rounded-xl  focus:border-red-700 focus:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-red-700;
 }
 </style>

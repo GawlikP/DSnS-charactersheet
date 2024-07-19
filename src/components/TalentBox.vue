@@ -1,7 +1,7 @@
 <template>
-  <div class="flex mx-4 my-4 shadow-xl shadow-red-800 rounded-xl p-4 w-full hover:bg-gray-800">
-    <div class="flex flex-col font-bold text-xl">
-      <div class="flex px-2">
+  <div class="flex flex-col mx-4 my-4 shadow-xl shadow-red-800 rounded-xl w-full hover:bg-gray-800">
+    <div class="flex font-bold text-xl w-full">
+      <div class="w-max-full">
         <label :for="`talent-name-${index}`">Name:</label>
         <div class="flex justify-end w-full">
           <button class="text-red-700 font-bold" @click="$emit('delete')"><i class="fa-solid fa-trash"></i></button>
