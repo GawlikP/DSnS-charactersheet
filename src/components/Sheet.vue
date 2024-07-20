@@ -480,7 +480,7 @@ function addInventoryBox() {
 function getAttributeDice(attributeValue) {
   switch (attributeValue) {
     case 0:
-      return "0";
+      return "1d4";
     case 1:
       return "1d6";
     case 2:

@@ -1,31 +1,32 @@
 <template>
-  <div class="flex flex-col mx-4 my-4 shadow-xl shadow-red-800 rounded-xl p-4 w-full hover:bg-gray-800">
+  <div class="flex flex-col mx-4 my-4 shadow-xl shadow-red-800 rounded-xl p-4 w-full hover:bg-gray-800 w-full">
     <div class="flex p-2 w-full">
       <p class="text-center text-xl font-bold w-full"> {{ name }} </p>
     </div>
     <div class="flex flex-col py-4 w-full">
-        <div class="w-max-full">
-          <label :for="`clothing-${name}-name`" class="text-xl w-full">Name</label>
+        <div class="w-full py-2">
+          <label :for="`clothing-${name}-name`" class="text-xl w-full px-2">Name</label>
           <input :id="`clothing-${name}-name`"
             :value="modelValue.name"
             @input="updateName"/>
         </div>
-        <div clss="w-max-full">
-          <label :for="`clothing-${name}-armor`" class="flex text-xl w-full">Armor</label>
+        <div clss="w-full py-2">
+          <label :for="`clothing-${name}-armor`" class="text-xl w-full px-2">Armor</label>
           <input :id="`clothing-${name}-armor`"
             :value="modelValue.skill"
             @input="updateSkill"/>
         </div>
 
-        <div class="w-max-full">
-          <label :for="`clothing-${name}-traits`" class="flex text-xl w-full">Traits</label>
+        <div class="w-full py-2">
+          <label :for="`clothing-${name}-traits`" class="flex text-xl w-full px-2">Traits</label>
           <textarea :id="`clothing-${name}-traits`"
             :value="modelValue.traits"
+            class="w-full"
             @input="updateTraits"/>
         </div>
 
-        <div class="w-max-full">
-          <label :for="`clothing-${name}-broken`" class="flex text-xl w-full">Broken</label>
+        <div class="w-full py-2">
+          <label :for="`clothing-${name}-broken`" class="flex text-xl w-full px-2">Broken</label>
             <i 
               class="fa-regular fa-circle text-2xl text-red-600 cursor-pointer"
               @click="updateBroken()" 
