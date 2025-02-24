@@ -10,11 +10,11 @@
             :value="modelValue.name"
             @input="updateName"/>
         </div>
-        <div clss="w-full py-2">
+        <div class="w-full py-2">
           <label :for="`clothing-${name}-armor`" class="text-xl w-full px-2">Armor</label>
           <input :id="`clothing-${name}-armor`"
-            :value="modelValue.skill"
-            @input="updateSkill"/>
+            :value="modelValue.armor"
+            @input="updateArmor"/>
         </div>
 
         <div class="w-full py-2">

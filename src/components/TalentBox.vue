@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mx-4 my-4 shadow-xl shadow-red-800 rounded-xl w-full hover:bg-gray-800">
+  <div class="flex flex-col mx-4 my-4 shadow-xl shadow-red-800 rounded-xl w-full hover:bg-gray-800 p-4">
     <div class="flex font-bold text-xl w-full">
       <div class="w-max-full">
         <label :for="`talent-name-${index}`">Name:</label>
@@ -8,6 +8,7 @@
         </div>
       </div>
       <input
+        class="w-full"
         :id="`talent-name-${index}`"
         :value="modelValue.name"
         @input="updateName"/>

@@ -186,7 +186,7 @@
     </div>
 
     <div class="flex  py-4 w-full"
-      v-for="(slot, i) in weapons" :key="i">
+      v-for="(slot, i) in weapons" :key="`weapon-${i}`">
       <WeaponSlotBox v-model="weapons[i]" @delete="deleteWeapon(i)" :index="i"/>
     </div>
     <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
@@ -198,7 +198,7 @@
     <div class="flex  py-4 w-full border-b-2 border-red-600 rounded-xl"></div>
 
     <div class="flex  py-4 w-full"
-      v-for="(slot, i) in clothing" :key="i">
+      v-for="(slot, i) in clothing" :key="`cloth-${i}`">
       <ClothSlotBox v-model="clothing[i]" :name="i"/>
     </div>
 
@@ -336,7 +336,8 @@ const backpack = ref({
 });
 
 const isSkillSelected = computed(() => {
-  return Object.values(markedSkills.value).some(v => v === true);
+  return Object.values(markedSkills.value).some(v => v === true) ||
+    Object.values(markedAttributes.value).some(v => v === true);
 });
 
 const currentMarkedSkill = computed(() => {
@@ -357,12 +358,22 @@ const equipment = ref({
 const weapons = ref(Array(1).fill(WeaponSlot))
 
 const currentDicePull = computed(() => {
+  console.log(Object.values(markedAttributes.value).includes(true));
   if (isSkillSelected.value === false) {
     return 0;
   }
   let attributeDice = "";
   let skillDice = "";
   let attributeValue = 0;
+  if (Object.values(markedAttributes.value).includes(true)) {
+
+    for (const [k, v] of Object.entries(markedAttributes.value)) {
+      if (v == true) {
+        attributeValue = attributes.value[k];
+      }
+    }
+  return `${getAttributeDice(attributeValue)} Fear: ${getFearDice()}`;
+  }
   let skillValue = skills.value[currentMarkedSkill.value];
   for (const [k, v] of Object.entries(saRelations)) {
     if (v.includes(currentMarkedSkill.value)) {
